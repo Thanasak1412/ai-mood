@@ -1,6 +1,12 @@
 import Link from "next/link";
 
+import { auth } from "@clerk/nextjs";
+
 export default function Home() {
+  const { userId } = auth();
+
+  const href = userId ? '/journal' : '/new-user';
+
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-black">
       <div className="max-w-xl w-full text-white mx-auto">
@@ -9,7 +15,7 @@ export default function Home() {
           This is the best app for tracking your mood throughout your life. All
           your have to do is the honest
         </p>
-        <Link href="/journal">
+        <Link href={href}>
           <button className="bg-blue-600 rounded-lg text-xl px-4 py-2">
             Get started
           </button>
