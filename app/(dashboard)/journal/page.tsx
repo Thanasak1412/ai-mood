@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import EntryCard from "@/components/EntryCard";
 import NewEntryCard from "@/components/NewEntryCard";
 import { getUserByClerkId } from "@/utils/auth";
@@ -22,7 +24,9 @@ export default async function Page() {
       <div className="grid grid-cols-3 grid-flow-row gap-4">
         <NewEntryCard />
         {entries.map((entry) => (
-          <EntryCard key={entry.id} entry={entry} />
+          <Link href={`/journal/${entry.id}`} key={entry.id}>
+            <EntryCard entry={entry} />
+          </Link>
         ))}
       </div>
     </div>
