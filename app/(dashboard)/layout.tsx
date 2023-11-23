@@ -6,7 +6,7 @@ export default function DashboardLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <div className="w-screen h-screen flex">
+    <div className="w-screen h-screen flex overflow-hidden">
       <aside className="h-full flex-1 basis-[12.5rem] border-r border-black/10">
         mood
       </aside>
