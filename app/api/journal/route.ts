@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { analyze } from "@/utils/ai";
 import { getUserByClerkId } from "@/utils/auth";
 import { prisma } from "@/utils/db";
 
@@ -20,6 +21,22 @@ export async function POST() {
           minute: 'numeric',
         },
       )}`,
+    },
+  });
+
+  const analyzed = await analyze(entry.content);
+
+  if (!analyzed) {
+    return NextResponse.json({
+      status: false,
+      message: analyzed ?? 'Error while analyzing this content',
+    });
+  }
+
+  await prisma.analysis.create({
+    data: {
+      entryId: entry.id,
+      ...analyzed,
     },
   });
 

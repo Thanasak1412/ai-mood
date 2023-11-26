@@ -26,9 +26,11 @@ export async function updateJournal(id: string, content: string) {
     }),
   );
 
-  if (res.ok) {
-    const { data } = await res.json();
-
-    return data;
+  if (!res.ok) {
+    return null;
   }
+
+  const { data } = (await res.json()) as unknown as { data: JournalEntry };
+
+  return data;
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { useAutosave } from "react-autosave";
 
@@ -14,14 +15,16 @@ export default function Editor({ entry }: Readonly<Props>) {
   const [value, setValue] = useState(entry.content);
   const [isLoading, setIsLoading] = useState(false);
 
+  const router = useRouter();
+
   useAutosave({
     data: value,
     onSave: async (_value) => {
       setIsLoading(true);
-
-      const updatedJournal = await updateJournal(entry.id, _value);
-
+      await updateJournal(entry.id, _value);
       setIsLoading(false);
+
+      router.refresh();
     },
   });
 
@@ -30,12 +33,12 @@ export default function Editor({ entry }: Readonly<Props>) {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="h-full w-full">
       {isLoading && <Loading />}
       <textarea
         value={value}
         onChange={handleChange}
-        className="w-full h-full px-8 py-4 text-xl outline-none"
+        className="h-full w-full px-8 py-4 text-xl outline-none"
       />
     </div>
   );
@@ -47,7 +50,7 @@ function Loading() {
       <output>
         <svg
           aria-hidden="true"
-          className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+          className="inline h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
