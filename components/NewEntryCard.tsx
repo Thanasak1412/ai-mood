@@ -21,10 +21,10 @@ export default function NewEntryCard() {
   };
 
   return (
-    <div className="bg-white shadow rounded-xl overflow-hidden cursor-pointer">
-      <div className="px-4 py-5 sm:p-5">
+    <div className="cursor-pointer overflow-hidden rounded-xl bg-white shadow">
+      <div className="h-full w-full px-4 py-5 sm:p-5">
         <span
-          className="text-3xl"
+          className="block h-full w-full text-3xl"
           onClick={onNewEntry}
           onKeyDown={handleKeyDown}
           tabIndex={0}

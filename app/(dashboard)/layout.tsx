@@ -36,7 +36,7 @@ export default function DashboardLayout({
         <div className="flex-1" />
       </aside>
       <div className="flex h-full basis-full flex-col">
-        <header className="h-16 border-b border-black/10">
+        <header className="min-h-[3.75rem] border-b border-black/10">
           <div className="flex h-full items-center justify-end pr-8">
             <UserButton />
           </div>
