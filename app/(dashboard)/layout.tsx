@@ -13,6 +13,10 @@ const menus = [
     label: 'Journal',
     link: '/journal',
   },
+  {
+    label: 'History',
+    link: '/history',
+  },
 ];
 
 export default function DashboardLayout({

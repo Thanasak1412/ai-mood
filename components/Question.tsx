@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 
 import { askQuestion } from "@/utils/api";
 
@@ -8,6 +8,8 @@ export default function Question() {
   const [loading, setLoading] = useState(false);
   const [answer, setAnswer] = useState('');
   const [error, setError] = useState<string | null>(null);
+
+  const questionFormRef = useRef<HTMLFormElement | null>(null);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,12 +24,13 @@ export default function Question() {
       console.error(error);
     } finally {
       setLoading(false);
+      questionFormRef.current?.reset();
     }
   };
 
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form ref={questionFormRef} onSubmit={onSubmit}>
         <div className="flex items-center justify-center gap-5">
           <input
             type="text"
@@ -44,8 +47,12 @@ export default function Question() {
           </button>
         </div>
       </form>
-      <div className="my-6 w-full border border-green-500 py-4 px-6 rounded-md">{answer}</div>
-      <div className="mt-6 font-normal text-red-600">{error}</div>
+      {answer && (
+        <div className="my-6 w-full rounded-md border border-green-500 px-6 py-4">
+          {answer}
+        </div>
+      )}
+      {error && <div className="mt-6 font-normal text-red-600">{error}</div>}
     </>
   );
 }
