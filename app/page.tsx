@@ -8,15 +8,15 @@ export default function Home() {
   const href = userId ? '/journal' : '/new-user';
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-black">
-      <div className="max-w-xl w-full text-white mx-auto">
-        <h1 className="text-6xl mb-4">The best journal app, period.</h1>
-        <p className="text-2xl text-white/60 mb-4">
+    <div className="flex h-screen w-screen items-center justify-center bg-black">
+      <div className="mx-auto w-full max-w-xl text-white">
+        <h1 className="mb-4 text-6xl">The best journal app, period.</h1>
+        <p className="mb-4 text-2xl text-white/60">
           This is the best app for tracking your mood throughout your life. All
           your have to do is the honest
         </p>
         <Link href={href}>
-          <button className="bg-blue-600 rounded-lg text-xl px-4 py-2">
+          <button className="rounded-lg bg-blue-600 px-4 py-2 text-xl">
             Get started
           </button>
         </Link>
