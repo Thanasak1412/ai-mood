@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`__test__/home.test.tsx > HomePage > should render sign in page when is not authenticate 1`] = `
+"Snapshot Diff:
+- First value
++ Second value
+
+  <DocumentFragment>
+    <button>
+-     Click to increase: 0
++     Click to increase: 1
+    </button>
+  </DocumentFragment>"
+`;
+
+exports[`HomePage > should redirect to journal entry page when is authenticated 1`] = `{}`;
+
+exports[`HomePage > should render sign in page when is not authenticate 1`] = `{}`;
