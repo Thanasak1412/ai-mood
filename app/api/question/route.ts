@@ -5,12 +5,6 @@ import { qa } from "@/utils/ai";
 import { getUserByClerkId } from "@/utils/auth";
 import { prisma } from "@/utils/db";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 const schema = z.object({
   question: z.string(),
 });
